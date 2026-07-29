@@ -1,3 +1,7 @@
-import "./style.css";
+import { submitButton, searchBar } from "./dom.js";
+import { weather } from "./weather.js";
 
-console.log("Webpack template is working!");
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  weather.getWeather(searchBar.value);
+});

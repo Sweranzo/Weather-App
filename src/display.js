@@ -1,8 +1,25 @@
-import { weatherContainer } from "./dom.js";
+import { weatherContainer, heroBackground } from "./dom.js";
 import { weather } from "./weather.js";
+import { background } from "./background.js";
 
 class Display {
   constructor() {}
+
+  async displayBackground(){
+    heroBackground.textContent = '';
+    const video = document.createElement('video');
+    video.src = background.backgroundSrc;
+    video.muted = true;
+    video.autoplay = true
+    video.loop = true;
+  
+    await new Promise (resolve => {
+      video.onloadeddata = resolve;
+    })
+    heroBackground.append(video);
+
+  }
+
   showWeather() {
     weatherContainer.textContent = "";
     const cityNameElement = document.createElement("p");

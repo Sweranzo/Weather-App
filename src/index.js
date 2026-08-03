@@ -12,6 +12,7 @@ import {
 } from "./dom.js";
 import { loading } from "./loading.js";
 
+
 submitButton.addEventListener("click", async (e) => {
   e.preventDefault();
   
@@ -21,6 +22,7 @@ await background.showBackground(searchBar.value);
 await weather.getWeather(searchBar.value);
 
 await display.displayBackground();
+
 display.showWeather();
 await new Promise(requestAnimationFrame);
 loading.hide();

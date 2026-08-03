@@ -29,7 +29,10 @@ class Weather {
     this.sunrise = 0;
     this.sunset = 0;
 
-    this.timezone = 0;
+    this.timezone = "";
+    this.timezoneOffset = 0;
+
+    this.clockInterval = null;
   }
 
   async getWeather(city) {
@@ -40,6 +43,7 @@ class Weather {
       }
 
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ebb1f3b9cbe7ea42181dab5d1d3b6e1c&units=metric`;
+
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -77,13 +81,34 @@ class Weather {
       this.sunrise = location.sys.sunrise;
       this.sunset = location.sys.sunset;
 
-      this.timezone = location.timezone;
+      this.timezoneOffset = location.timezone;
+
+      this.updateClock();
 
       console.log(this);
     } catch (error) {
       console.log(error);
     }
   }
-}
 
+  updateClock() {
+    clearInterval(this.clockInterval);
+
+    const update = () => {
+      const utc = Date.now() + new Date().getTimezoneOffset() * 60000;
+      const cityTime = new Date(utc + this.timezoneOffset * 1000);
+
+      const hours = String(cityTime.getHours()).padStart(2, "0");
+      const minutes = String(cityTime.getMinutes()).padStart(2, "0");
+      const seconds = String(cityTime.getSeconds()).padStart(2, "0");
+      const period = hours >= 12 ? "PM":"AM";
+      const hour12 = hours % 12 || 12;
+      this.timezone = `${hour12}:${minutes}:${seconds} ${period}`;
+    };
+
+    update();
+
+    this.clockInterval = setInterval(update, 1000);
+  }
+}
 export const weather = new Weather();

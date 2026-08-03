@@ -106,14 +106,10 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   font-family: "Roboto", sans-serif;
-  overflow: hidden;
+  
 }
 
 main {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 2rem;
 }
 
@@ -250,7 +246,61 @@ form {
 /* Weather */
 
 .weather-container {
-  display: none;
-
+  display: flex;
+  gap: 2rem;
   color: white;
+  border: 1px solid white;
 }
+
+.location-section { 
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.348);
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.374);
+  backdrop-filter: blur(10px);
+  
+}
+
+.details-section { 
+ border: 2px solid red;
+ background-color: transparent;
+ backdrop-filter: blur(10px);
+ padding: 2rem;
+ justify-content: center;
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+ 
+}
+
+.location-section p:first-child {
+  font-size: 3rem;
+  text-align: center;
+ 
+}
+
+.location-section p:nth-child(2), .location-section p:nth-child(3), .location-section img{
+  text-align: center;
+  align-self: center;
+  
+}
+
+.location-section p {
+  font-weight: lighter;
+}
+
+
+.details-section {
+  font-weight: lighter;
+
+}
+
+.details-section p:first-child {
+  text-align: center;
+  font-weight: none;
+  font-size: 2rem;
+}
+
+

@@ -1,27 +1,54 @@
-import { weatherContainer, heroBackground } from "./dom.js";
+import { weatherContainer, heroBackground, intro } from "./dom.js";
 import { weather } from "./weather.js";
 import { background } from "./background.js";
 
 class Display {
-  constructor() {}
+  constructor() {
+    this.detailsSection = null;
+    this.detailsBackground = null;
+    this.clockInterval = null;
+  }
 
-  async displayBackground(){
-    heroBackground.textContent = '';
-    const video = document.createElement('video');
+  async displayBackground() {
+    heroBackground.textContent = "";
+
+    const video = document.createElement("video");
     video.src = background.backgroundSrc;
     video.muted = true;
-    video.autoplay = true
+    video.autoplay = true;
     video.loop = true;
-  
-    await new Promise (resolve => {
-      video.onloadeddata = resolve;
-    })
-    heroBackground.append(video);
+    video.playsInline = true;
 
+    await new Promise((resolve) => {
+      video.onloadeddata = resolve;
+    });
+
+    heroBackground.append(video);
+  }
+
+  async showDetailsBackground() {
+    if (!this.detailsBackground) return;
+
+    this.detailsBackground.textContent = "";
+
+    const video = document.createElement("video");
+    video.src = background.divBackground;
+    video.muted = true;
+    video.autoplay = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    await new Promise((resolve) => {
+      video.onloadeddata = resolve;
+    });
+
+    this.detailsBackground.append(video);
   }
 
   showWeather() {
     weatherContainer.textContent = "";
+    intro.style.display = "none";
+
     const cityNameElement = document.createElement("p");
     const countryElement = document.createElement("p");
     const latitudeElement = document.createElement("p");
@@ -44,7 +71,7 @@ class Display {
     const sunsetElement = document.createElement("p");
     const timezoneElement = document.createElement("p");
 
-    cityNameElement.textContent = `City: ${weather.cityName}`;
+    cityNameElement.textContent = weather.cityName;
     countryElement.textContent = `Country: ${weather.country}`;
 
     latitudeElement.textContent = `Latitude: ${weather.latitude}`;
@@ -60,6 +87,7 @@ class Display {
 
     weatherElement.textContent = `Weather: ${weather.weather}`;
     descriptionElement.textContent = `Description: ${weather.description}`;
+
     iconElement.src = `https://openweathermap.org/img/wn/${weather.icon}@2x.png`;
     iconElement.alt = weather.description;
 
@@ -74,42 +102,67 @@ class Display {
     sunriseElement.textContent = `Sunrise (Unix): ${weather.sunrise}`;
     sunsetElement.textContent = `Sunset (Unix): ${weather.sunset}`;
 
-    timezoneElement.textContent = `Timezone Offset: UTC${weather.timezone >= 0 ? "+" : ""}${weather.timezone / 3600}`;
+    timezoneElement.textContent = weather.timezone;
 
-    weatherContainer.append(
+    // Live Clock
+    clearInterval(this.clockInterval);
+
+    this.clockInterval = setInterval(() => {
+      timezoneElement.textContent = weather.timezone;
+    }, 1000);
+
+    const locationSection = document.createElement("div");
+    locationSection.classList.add("location-section");
+
+    locationSection.append(
       cityNameElement,
       countryElement,
-      latitudeElement,
-      longitudeElement,
+      weatherElement,
+      iconElement,
       temperatureElement,
       feelsLikeElement,
       tempMinElement,
-      tempMaxElement,
+      tempMaxElement
+    );
+
+    this.detailsSection = document.createElement("div");
+    this.detailsSection.classList.add("details-section");
+
+    this.detailsBackground = document.createElement("div");
+    this.detailsBackground.classList.add("details-background");
+
+    const detailsContent = document.createElement("div");
+    detailsContent.classList.add("details-content");
+
+    detailsContent.append(
+      timezoneElement,
+      latitudeElement,
+      longitudeElement,
       humidityElement,
       pressureElement,
-      weatherElement,
       descriptionElement,
-      iconElement,
       windSpeedElement,
       windDegreeElement,
       windGustElement,
       cloudinessElement,
       visibilityElement,
       sunriseElement,
-      sunsetElement,
-      timezoneElement
+      sunsetElement
     );
-  }
 
-  /* 
-    changeBackground(){
-        const background = document.createElement('vid'); 
-        background.classList.add('background-video');
-        background.autoplay = true; 
-        background.muted = true;
-        background.loop = true;
-        
-    } */
+    this.detailsSection.append(
+      this.detailsBackground,
+      detailsContent
+    );
+
+    weatherContainer.append(
+      locationSection,
+      this.detailsSection
+    );
+
+    // Load the details background video
+    this.showDetailsBackground();
+  }
 }
 
 export const display = new Display();

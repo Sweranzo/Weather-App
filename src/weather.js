@@ -101,7 +101,7 @@ class Weather {
       const hours = String(cityTime.getHours()).padStart(2, "0");
       const minutes = String(cityTime.getMinutes()).padStart(2, "0");
       const seconds = String(cityTime.getSeconds()).padStart(2, "0");
-      const period = hours >= 12 ? "PM":"AM";
+      const period = hours >= 12 ? "PM" : "AM";
       const hour12 = hours % 12 || 12;
       this.timezone = `${hour12}:${minutes}:${seconds} ${period}`;
     };

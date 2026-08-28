@@ -1,11 +1,11 @@
 export const submitButton = document.querySelector("#submit");
 export const searchBar = document.querySelector("#search-bar");
 export const weatherContainer = document.querySelector(".weather-container");
-export const heroBackground = document.querySelector('.hero-background');
+export const heroBackground = document.querySelector(".hero-background");
 export const loadingOverlay = document.querySelector(".loading-overlay");
 export const loadingContent = document.querySelector(".loading-content");
 export const spinner = document.querySelector(".spinner");
 export const loadingText = document.querySelector(".loading-text");
-export const form = document.querySelector('#search-city');
-export const appTitle = document.querySelector('.app-name');
-export const intro = document.querySelector('.intro');
+export const form = document.querySelector("#search-city");
+export const appTitle = document.querySelector(".app-name");
+export const intro = document.querySelector(".intro");

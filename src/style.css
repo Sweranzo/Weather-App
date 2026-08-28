@@ -101,12 +101,12 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   min-height: 100vh;
   min-width: 100vw;
   font-family: "Roboto", sans-serif;
-  
+  display: flex;
+  justify-content: center;
 }
 
 main {
@@ -118,21 +118,17 @@ main {
   flex-direction: column;
   align-items: center;
   gap: 1.8rem;
-
   padding: 3rem;
   border-radius: 24px;
-
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(16px);
-
-  color: white;
+  color: gray;
   text-align: center;
 }
 
 .app-name {
-  font-size: clamp(2.5rem, 5vw, 5rem);
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-size: clamp(2.5rem, 5vw, 3rem);
+  font-weight: lighter;
+  letter-spacing: 1px;
+  max-width: 80%;
 }
 
 form {
@@ -141,15 +137,17 @@ form {
   align-items: center;
 }
 
+#search-city {
+  border: 1px solid gray;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
 #search-bar {
   width: 350px;
   max-width: 80vw;
-
-  padding: 1rem 1.25rem;
-
   border: none;
-  outline: none;
-  border-radius: 999px;
+  padding: 1rem;
 
   font-size: 1rem;
   font-family: inherit;
@@ -157,17 +155,20 @@ form {
 
 #submit {
   display: block;
-
+  background-color: transparent;
   padding: 1rem 2rem;
 
   border: none;
-  border-radius: 999px;
+  border-radius: 10px;
 
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-
   transition: transform 0.2s ease;
+}
+
+#submit img {
+  height: 20px;
 }
 
 #submit:hover {
@@ -252,7 +253,7 @@ form {
   border: 1px solid white;
 }
 
-.location-section { 
+.location-section {
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -260,41 +261,37 @@ form {
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.374);
   backdrop-filter: blur(10px);
-  
 }
 
-.details-section { 
- border: 2px solid red;
- background-color: transparent;
- backdrop-filter: blur(10px);
- padding: 2rem;
- justify-content: center;
- display: flex;
- flex-direction: column;
- width: 100%;
- 
+.details-section {
+  border: 2px solid red;
+  background-color: transparent;
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .location-section p:first-child {
   font-size: 3rem;
   text-align: center;
- 
 }
 
-.location-section p:nth-child(2), .location-section p:nth-child(3), .location-section img{
+.location-section p:nth-child(2),
+.location-section p:nth-child(3),
+.location-section img {
   text-align: center;
   align-self: center;
-  
 }
 
 .location-section p {
   font-weight: lighter;
 }
 
-
 .details-section {
   font-weight: lighter;
-
 }
 
 .details-section p:first-child {
@@ -302,5 +299,3 @@ form {
   font-weight: none;
   font-size: 2rem;
 }
-
-

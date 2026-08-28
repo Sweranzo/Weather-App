@@ -1,12 +1,19 @@
-import { weatherContainer, heroBackground, intro } from "./dom.js";
+import { weatherContainer, heroBackground, intro, submitButton } from "./dom.js";
 import { weather } from "./weather.js";
 import { background } from "./background.js";
+import searchIcon from "./images/search.png";
 
 class Display {
   constructor() {
     this.detailsSection = null;
     this.detailsBackground = null;
     this.clockInterval = null;
+  }
+
+  renderBackground() {
+    const image = document.createElement("img");
+    image.src = searchIcon;
+    submitButton.append(image);
   }
 
   async displayBackground() {
@@ -150,15 +157,9 @@ class Display {
       sunsetElement
     );
 
-    this.detailsSection.append(
-      this.detailsBackground,
-      detailsContent
-    );
+    this.detailsSection.append(this.detailsBackground, detailsContent);
 
-    weatherContainer.append(
-      locationSection,
-      this.detailsSection
-    );
+    weatherContainer.append(locationSection, this.detailsSection);
 
     // Load the details background video
     this.showDetailsBackground();

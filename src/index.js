@@ -12,6 +12,11 @@ display.renderBackground();
 submitButton.addEventListener("click", async (e) => {
   e.preventDefault();
 
+  if (searchBar.value === "") {
+    alert("please type a valid city");
+    return;
+  }
+
   loading.show(`Finding ${searchBar.value}...`);
 
   await background.showBackground(searchBar.value);

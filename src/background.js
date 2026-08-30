@@ -3,7 +3,33 @@ import { weather } from "./weather.js";
 class Background {
   constructor() {
     this.backgroundSrc = "";
+    this.landingPage = "";
     this.divBackground = "";
+  }
+
+  async landingPageBackground() {
+    const apiKey = "FS9aXMuUnQclD533tO5ZQrXsJ5BoI6dNU0av7zB8tOap9ItZOtk5el2B";
+    try {
+      const response = await fetch(
+        `https://api.pexels.com/v1/search?query=nature%20cityscape&orientation=landscape&per_page=1`,
+        {
+          headers: {
+            Authorization: apiKey,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong fetching city video!");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data);
+      this.landingPage = data.photos[0].src.original;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async showBackground(city) {

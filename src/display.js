@@ -10,7 +10,11 @@ class Display {
     this.clockInterval = null;
   }
 
-  renderBackground() {
+  async renderBackground() {
+    await background.landingPageBackground();
+    console.log("im running");
+    console.log(background.landingPage);
+    document.body.style.backgroundImage = `url("${background.landingPage}")`;
     const image = document.createElement("img");
     image.src = searchIcon;
     submitButton.append(image);

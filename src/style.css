@@ -105,28 +105,67 @@ body {
   min-height: 100vh;
   min-width: 100vw;
   font-family: "Roboto", sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
+  display: grid;
   padding: 2rem;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.341);
+  display: flex;
+  justify-content: end;
+  height: 100px;
+  gap: 30px;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-weight: lighter;
+  align-self: center;
 }
 
 .intro {
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.8rem;
-  padding: 3rem;
   border-radius: 24px;
-  color: gray;
+  text-align: center;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-top: 200px;
+}
+
+.intro p {
+  width: 275px;
   text-align: center;
 }
 
+.intro-button {
+  padding: 5px;
+  border-radius: 5px;
+  width: 100px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.199);
+  border: none;
+}
+
 .app-name {
-  font-size: clamp(2.5rem, 5vw, 3rem);
-  font-weight: bolder;
-  letter-spacing: 1px;
-  max-width: 500px;
+  font-size: 69px;
+  color: white;
+  width: 600px;
 }
 
 form {
@@ -177,9 +216,11 @@ form {
 }
 
 .features {
+  justify-items: center;
   border: 1px solid red;
   display: grid;
-  height: 400px;
+  height: 100%;
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -187,6 +228,9 @@ form {
 .f2,
 .f3 {
   border: 2px solid green;
+  height: 100px;
+  width: 200px;
+  align-self: flex-end;
 }
 
 /* Loading Overlay */

@@ -13,28 +13,35 @@
       </div>
     </div>
     <div class="hero-background"></div>
+    <header class="nav">
+      <a href="#"> About</a>
+      <a href="#">Developer Info</a>
+      <a href="#">Home</a>
+      <form id="search-city">
+        <input
+          type="text"
+          id="search-bar"
+          name="search-bar"
+          placeholder="Search Your City"
+          required~
+        />
+        <button id="submit" type="submit"></button>
+      </form>
+    </header>
     <main>
-      <header class="nav"><a href="#"> About</a><a href="#">Developer Info</a></header>
       <div class="intro">
-        <h1 class="app-name">Welcome to Jeff's Weather App</h1>
-        <form id="search-city">
-          <input
-            type="text"
-            id="search-bar"
-            name="search-bar"
-            placeholder="Search Your City"
-            required
-          />
-          <button id="submit" type="submit"></button>
-        </form>
+        <h1 class="app-name">The Only Weather App You Need</h1>
+        <p>Search the current weather in your city and see popular places in one search</p>
+        <button class="intro-button">Contact</button>
       </div>
+
       <div class="features">
         <div class="f1"></div>
         <div class="f2"></div>
         <div class="f3"></div>
       </div>
-      <div class="weather-container"></div>
     </main>
+    <div class="weather-container"></div>
     <footer></footer>
   </body>
 </html>

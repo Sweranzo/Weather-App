@@ -1,4 +1,5 @@
 import { weather } from "./weather.js";
+import weatherBackground from "./images/background.jpg";
 
 class Background {
   constructor() {
@@ -26,7 +27,7 @@ class Background {
 
       const data = await response.json();
       console.log(data);
-      this.landingPage = data.photos[0].src.original;
+      this.landingPage = weatherBackground;
     } catch (error) {
       console.log(error);
     }

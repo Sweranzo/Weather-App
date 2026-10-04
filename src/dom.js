@@ -9,3 +9,5 @@ export const loadingText = document.querySelector(".loading-text");
 export const form = document.querySelector("#search-city");
 export const appTitle = document.querySelector(".app-name");
 export const intro = document.querySelector(".intro");
+export const features = document.querySelector(".features");
+export const container = document.querySelector(".main-container");

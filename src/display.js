@@ -1,4 +1,11 @@
-import { weatherContainer, heroBackground, intro, submitButton } from "./dom.js";
+import {
+  weatherContainer,
+  heroBackground,
+  intro,
+  submitButton,
+  features,
+  container,
+} from "./dom.js";
 import { weather } from "./weather.js";
 import { background } from "./background.js";
 import searchIcon from "./images/search.png";
@@ -18,12 +25,13 @@ class Display {
     const image = document.createElement("img");
     image.src = searchIcon;
     submitButton.append(image);
+    intro.classList.add("show");
   }
 
   async displayBackground() {
     heroBackground.textContent = "";
-
     const video = document.createElement("video");
+    video.classList.add("video");
     video.src = background.backgroundSrc;
     video.muted = true;
     video.autoplay = true;
@@ -32,6 +40,9 @@ class Display {
 
     await new Promise((resolve) => {
       video.onloadeddata = resolve;
+      weatherContainer.style.display = "flex";
+      features.style.display = "none";
+      container.style.display = "none";
     });
 
     heroBackground.append(video);
@@ -39,9 +50,7 @@ class Display {
 
   async showDetailsBackground() {
     if (!this.detailsBackground) return;
-
     this.detailsBackground.textContent = "";
-
     const video = document.createElement("video");
     video.src = background.divBackground;
     video.muted = true;

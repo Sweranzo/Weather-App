@@ -84,8 +84,6 @@ class Weather {
       this.timezoneOffset = location.timezone;
 
       this.updateClock();
-
-      console.log(this);
     } catch (error) {
       console.log(error);
     }

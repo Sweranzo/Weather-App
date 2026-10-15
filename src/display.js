@@ -9,6 +9,8 @@ import {
 import { weather } from "./weather.js";
 import { background } from "./background.js";
 import searchIcon from "./images/search.png";
+import model from "./images/model.png";
+import weatherBackground from "./images/background.jpg";
 
 class Display {
   constructor() {
@@ -17,11 +19,14 @@ class Display {
     this.clockInterval = null;
   }
 
-  async renderBackground() {
-    await background.landingPageBackground();
+  renderBackground() {
+    const modelImage = document.createElement("img");
+    modelImage.classList.add("model");
+    modelImage.src = model;
+    container.append(modelImage);
     console.log("im running");
     console.log(background.landingPage);
-    document.body.style.backgroundImage = `url("${background.landingPage}")`;
+    document.body.style.backgroundImage = `url("${weatherBackground}")`;
     const image = document.createElement("img");
     image.src = searchIcon;
     submitButton.append(image);

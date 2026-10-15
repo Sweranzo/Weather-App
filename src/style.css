@@ -19,10 +19,12 @@ body {
 }
 
 main {
+  position: relative;
   display: grid;
   padding: 2rem;
   grid-template-columns: 1fr 1fr;
   flex: 1;
+  overflow: hidden;
 }
 
 .video {
@@ -54,7 +56,7 @@ a {
   gap: 1.8rem;
   border-radius: 24px;
   text-align: center;
-  justify-content: center;
+  margin-top: 10%;
   flex-wrap: wrap;
   transition: opacity 5s;
 }
@@ -77,6 +79,24 @@ a {
   border: none;
 }
 
+.half-background {
+  position: absolute;
+
+  height: 100vh;
+  width: 100vw;
+  right: -50vw;
+  background-color: white;
+  transform: skewX(-65deg);
+}
+
+.model {
+  position: absolute;
+  height: 100vh;
+
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .app-name {
   font-style: normal;
   font-weight: 400;
@@ -133,12 +153,14 @@ form {
 }
 
 .features {
-  justify-items: center;
   border: 1px solid red;
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: end;
+  gap: 10%;
   height: 100%;
   width: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .f1,
@@ -147,12 +169,14 @@ form {
   border: 2px solid green;
   height: 100px;
   width: 200px;
-  align-self: flex-end;
+
+  z-index: 999999;
 }
 
 /* Loading Overlay */
 
 .loading-overlay {
+  display: none;
   position: fixed;
   inset: 0;
 
@@ -172,11 +196,17 @@ form {
 .loading-overlay.hidden {
   opacity: 0;
   pointer-events: none;
+  display: none;
+}
+
+.loading-text {
+  display: none;
 }
 
 .loading-content {
   text-align: center;
   color: white;
+  display: none;
 }
 
 .spinner {
@@ -190,6 +220,7 @@ form {
   animation: spin 0.8s linear infinite;
 
   margin: 0 auto 20px;
+  display: none;
 }
 
 @keyframes spin {

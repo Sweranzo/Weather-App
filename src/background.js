@@ -1,5 +1,5 @@
 import { weather } from "./weather.js";
-import weatherBackground from "./images/background.jpg";
+
 
 class Background {
   constructor() {
